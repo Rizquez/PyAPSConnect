@@ -40,16 +40,16 @@ pip install -r requirements.txt
 > Asegúrate de tener las credenciales de Autodesk Forge.
 
 > [!TIP]
-> Configura tus credenciales en el archivo de configuración o utiliza variables de entorno.
+> Configura tus credenciales en el archivo de variables de entorno.
 
 ## 📚 Recursos adicionales
 Para mas informacion visite el sitio web oficial de [Autodesk Platform Services](https://aps.autodesk.com/developer/documentation)
 
 ## 📝 Contribuciones
 ¡Las contribuciones son bienvenidas! Si deseas colaborar, por favor:
-- Haz un fork del proyecto.
+- Haz un `fork` del proyecto.
 - Crea una rama con tu funcionalidad o corrección (git checkout -b feature/nueva-funcion).
-- Realiza un pull request con una descripción clara de tus cambios.
+- Realiza un `pull request` con una descripción clara de tus cambios.
 
 ## 📄 Licencia
 Este proyecto está licenciado bajo la licencia `GNU GENERAL PUBLIC LICENSE`. Consulta el archivo `LICENSE` para más detalles.
