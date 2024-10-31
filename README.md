@@ -31,6 +31,7 @@ PyForgeConnect es una herramienta desarrollada en `Python` para facilitar la con
 ## 🧾 Dependencias
 - Python 3.6 o superior.
 - Librerías especificadas en `requirements.txt`.
+
 Para instalar las dependencias, ejecuta:
 ```
 pip install -r requirements.txt
