@@ -30,6 +30,8 @@ class AuthClient(BaseClient):
         authorize_url: URL para la autorizacion del usuario.
         access_token: Token de acceso actual (si ha sido asignado).
         refresh_token: Refresh token actual (si ha sido asignado).
+
+    Documentacion: https://aps.autodesk.com/en/docs/oauth/v2/reference/http/
     """
 
     def __init__(self, client_id: str, client_secret: str, redirect_uri: str, base_url: str = BASE_URL) -> None:
