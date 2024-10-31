@@ -8,12 +8,11 @@ load_dotenv(override=False)
 
 # LIBRERIAS (INTERNAS)
 # -------------------------------------------------------------------------------------------------------------------------------------------------
-from .keys import Keys
 from ._environment import Production, Development
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
 env = os.getenv('FLASK_ENV')
-current_setting = Production if env == Keys.PRO else Development
+current_setting = Production if env == 'production' else Development
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 # FIN DEL FICHERO

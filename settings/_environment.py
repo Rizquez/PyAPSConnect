@@ -5,14 +5,9 @@ import os
 import binascii
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-# LIBRERIAS (INTERNAS)
-# -------------------------------------------------------------------------------------------------------------------------------------------------
-from .keys import Keys
-# -------------------------------------------------------------------------------------------------------------------------------------------------
-
 class _SettingGlobal(object):
     """
-    ACTUA COMO UNA PLANTILLA PARA TODAS LAS DEMAS CLASES SE DEFINEN LAS CONFIGURACIONES SEGUN CADA ENTORNO DE EJECUCION ENTORNOS DE LA APP.
+    Actua como una plantilla para todas las demas clases se definen las configuraciones segun cada entorno de ejecucion entornos de la aplicacion.
     """
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
@@ -22,9 +17,9 @@ class _SettingGlobal(object):
 
 class Development(_SettingGlobal):
     """
-    DEFINE LA CONFIGURACION DEL ENTORNO DE DESARROLLO.
+    Define la configuracion del entorno de `DESARROLLO`.
     """
-    ENV = Keys.DEV
+    ENV = 'development'
     HOST = '127.0.0.1'
     PORT = '8080'
     DEBUG = True
@@ -32,9 +27,9 @@ class Development(_SettingGlobal):
 
 class Production(_SettingGlobal):
     """
-    DEFINE LA CONFIGURACION DEL ENTORNO DE PRODUCCION.
+    Define la configuracion del entorno de `PRODUCCION`.
     """
-    ENV = Keys.PRO
+    ENV = 'production'
     HOST = '0.0.0.0'
     PORT = '8080'
     DEBUG = False
