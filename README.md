@@ -35,7 +35,7 @@ Para instalar las dependencias, ejecuta:
 ```
 pip install -r requirements.txt
 ```
-> [!NOTA]
+> [!NOTE]
 > Asegúrate de tener las credenciales de Autodesk Forge. Configura tus credenciales en el archivo de configuración o utiliza variables de entorno.
 
 ## 📚 Recursos adicionales
