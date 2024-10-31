@@ -8,7 +8,14 @@ from dotenv import load_dotenv
 load_dotenv(override=False)
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 
-app = Flask(__name__)
+# LIBRERIAS (INTERNAS)
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+from ..models import Scopes
+from settings import TOKEN_URL
+# -------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Instanciamos la app
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 CLIENT_ID = os.getenv('CLIENT_ID')
 URL_CALLBACK = os.getenv('URL_CALLBACK')
@@ -23,7 +30,14 @@ def home():
 
 @app.route('/authenticate')
 def authenticate():
-    scopes = 'data:read data:write data:create bucket:create bucket:read'
+    lst_scopes = [
+        Scopes.DATA_READ.value,
+        Scopes.DATA_WRITE.value,
+        Scopes.DATA_CREATE.value,
+        Scopes.BUCKET_CREATE.value,
+        Scopes.BUCKET_READ.value
+    ]
+    scopes = ' '.join(lst_scopes)
     return redirect(f"https://developer.api.autodesk.com/authentication/v2/authorize?response_type=code&client_id={CLIENT_ID}&redirect_uri={URL_CALLBACK}&scope={scopes}")
 
 @app.route('/api/auth/callback')
@@ -32,7 +46,6 @@ def callback():
     if not code:
         return 'Error: No se proporcionó el código de autorización.', 400
 
-    token_url = "https://developer.api.autodesk.com/authentication/v2/token"
     payload = {
         'grant_type': 'authorization_code',
         'code': code,
@@ -43,7 +56,7 @@ def callback():
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     }
-    resp = requests.post(token_url, data=payload, headers=headers)
+    resp = requests.post(TOKEN_URL, data=payload, headers=headers)
     if resp.status_code == 200:
         resp_json = resp.json()
         session['access_token'] = resp_json['access_token']
@@ -70,7 +83,6 @@ def refresh():
         return redirect(url_for('authenticate'))
 
     refresh_token = session['refresh_token']
-    token_url = "https://developer.api.autodesk.com/authentication/v2/token"
     payload = {
         'grant_type': 'refresh_token',
         'refresh_token': refresh_token,
@@ -80,7 +92,7 @@ def refresh():
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     }
-    resp = requests.post(token_url, data=payload, headers=headers)
+    resp = requests.post(TOKEN_URL, data=payload, headers=headers)
     if resp.status_code == 200:
         resp_json = resp.json()
         session['access_token'] = resp_json['access_token']
