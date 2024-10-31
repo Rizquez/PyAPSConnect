@@ -38,6 +38,8 @@ pip install -r requirements.txt
 ```
 > [!NOTE]
 > Asegúrate de tener las credenciales de Autodesk Forge.
+
+> [!TIP]
 > Configura tus credenciales en el archivo de configuración o utiliza variables de entorno.
 
 ## 📚 Recursos adicionales
