@@ -9,7 +9,7 @@ __PyForgeConnect__ es una herramienta desarrollada en `Python` para facilitar la
 > [!NOTE]
 > Este proyecto está en desarrollo activo, por lo que algunas funcionalidades aún están en construcción. El `README` se actualizará continuamente para indicar estas nuevas funcionalidades.
 
-## Funcionalidad
+## Funcionalidades
 - Autenticación rápida y segura con `Autodesk Forge`.
 <!-- Estas funcionalidades están planificadas:
 - Conexión simplificada a las APIs de `Forge`, permitiendo integrarse sin fricciones en otros proyectos de `Python`.
@@ -32,7 +32,9 @@ La estructura del proyecto sigue un esquema modular para facilitar el crecimient
 │   └── settings.py 
 ├── src
 │   ├── models /...
-│   └── routes /...
+│   ├── routes /...
+│   ├── static /...
+│   └── templates /...
 ├── .gitignore
 ├── LICENSE
 ├── main.py
@@ -43,10 +45,9 @@ La estructura del proyecto sigue un esquema modular para facilitar el crecimient
 ## Instalación y dependencias
 Para comenzar a usar PyForgeConnect, sigue los siguientes pasos:
 
-1. Clona el repositorio:
+1. Clona el repositorio (ssh):
 ```
-git clone https://github.com/tu-usuario/pyforgeconnect.git
-cd pyforgeconnect
+git clone git@github.com:Rizquez/PyForgeConnect.git
 ```
 
 2. Librerías especificadas en `requirements.txt`, para instalar las dependencias, ejecuta:
@@ -78,7 +79,7 @@ Para obtener más información sobre `Autodesk Forge`, consulta el sitio web ofi
 - Realiza un `fork` del proyecto.
 - Crea una nueva rama con tu funcionalidad o corrección.
 ```
-git checkout -b feature/nueva-funcion
+git checkout -b feature/funcion
 ```
 - Realiza un `pull request` describiendo claramente tus cambios.
 
