@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>PyForgeConnect</title>
-    </head>
-    <body>
-        <h1>Sesion cerrada</h1>
-        <p>La sesion ha sido cerrada correctamente.</p>
-        <a href="/">Iniciar sesion de nuevo</a>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    PyForgeConnect - Logout
+{% endblock %}
+
+{% block content %}
+<h1>Sesion cerrada</h1>
+<p>La sesion ha sido cerrada correctamente.</p>
+<a href="/">Iniciar sesion de nuevo</a>
+{% endblock %}

@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<html class="img_err_html">
-    <head>
-        <link rel="stylesheet" type="text/css" href="../static/styles/error.css"/>
-    </head>
-    <body class="img_err_body">
-        <div class="img_err_bg"></div>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block html_attributes %}
+    class="img_err_html"
+{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/error.css') }}"/>
+{% endblock %}
+
+{% block title %}
+    PyForgeConnect - Error
+{% endblock %}
+
+{% block body_attributes %}
+    class="img_err_body"
+{% endblock %}
+
+{% block content %}
+<div class="img_err_bg"></div>
+{% endblock %}

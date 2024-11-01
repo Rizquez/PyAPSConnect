@@ -1,26 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon web" href="{{url_for('static', filename='images/favicon.ico')}}">
-        <title>PyForgeConnect</title>
-    </head>
-    <body>
-        <h1>Selecciona los Scopes que deseas utilizar:</h1>
-        <form action="{{ url_for('authenticate') }}" method="post">
-            {% for scope in scopes %}
-                <div>
-                    <input type="checkbox" id="{{ scope.name }}" name="scopes" value="{{ scope.value }}">
-                    <label for="{{ scope.name }}">{{ scope.value }}</label>
-                </div>
-            {% endfor %}
-            <br>
-            <button type="submit">Autenticar</button>
-        </form>
-        <p>Durante la fase de desarrollo el CLIENT_ID, el CLIENT_SECRET y REDIRECT_URI estaran indicadas como variables de entorno.</p>
-        <p>Proximamente se incluiran opciones para ingresar estos datos y controlar su veracidad.</p>
-        <p>Recuerde tener abierta la sesion en su cuenta de Autodesk para que pueda dar permiso a la peticion de conexion sobre el servicio de Forge.</p>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    PyForgeConnect - Home
+{% endblock %}
+
+{% block content %}
+<h1>Selecciona los Scopes que deseas utilizar:</h1>
+<form action="{{ url_for('authenticate') }}" method="post">
+    {% for scope in scopes %}
+        <div>
+            <input type="checkbox" id="{{ scope.name }}" name="scopes" value="{{ scope.value }}">
+            <label for="{{ scope.name }}">{{ scope.value }}</label>
+        </div>
+    {% endfor %}
+    <br>
+    <button type="submit">Autenticar</button>
+</form>
+<p>Durante la fase de desarrollo el CLIENT_ID, el CLIENT_SECRET y REDIRECT_URI estaran indicadas como variables de entorno.</p>
+<p>Proximamente se incluiran opciones para ingresar estos datos y controlar su veracidad.</p>
+<p>Recuerde tener abierta la sesion en su cuenta de Autodesk para que pueda dar permiso a la peticion de conexion sobre el servicio de Forge.</p>
+{% endblock %}
