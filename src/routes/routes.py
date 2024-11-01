@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 import os
 import requests
-from flask import Flask, request, redirect, session, url_for, jsonify
+from flask import Flask, request, redirect, session, url_for, jsonify, render_template
 from dotenv import load_dotenv
 load_dotenv(override=False)
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23,25 +23,21 @@ auth_client = AuthClient(
     redirect_uri = os.getenv('REDIRECT_URI')
 )
 
+
 @app.route('/')
 def home():
-    if 'access_token' in session:
-        return 'Ya estás autenticado. <a href="/logout">Cerrar sesión</a>'
-    else:
-        return redirect(url_for('authenticate'))
+    return render_template('home.html', scopes=Scopes)
     
 
-@app.route('/authenticate')
+@app.route('/authenticate', methods=['GET', 'POST'])
 def authenticate():
-    lst_scopes = [
-        Scopes.DATA_READ.value,
-        Scopes.DATA_WRITE.value,
-        Scopes.DATA_CREATE.value,
-        Scopes.BUCKET_CREATE.value,
-        Scopes.BUCKET_READ.value
-    ]
-    auth_url = auth_client.get_authorization_url(lst_scopes)
-    return redirect(auth_url)
+    if request.method == 'POST':
+        scopes = request.form.getlist('scopes')
+        auth_url = auth_client.get_authorization_url(scopes)
+        return redirect(auth_url)
+    else:
+        return redirect(url_for('home'))
+
 
 @app.route('/api/auth/callback')
 def callback():
@@ -74,6 +70,46 @@ def refresh():
         return str(ve), 400
     except requests.HTTPError as httpe:
         return jsonify({'mensaje': f'Error al refrescar el token: {httpe.response.text}'}), 400
+    
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    auth_client.access_token = None
+    auth_client.refresh_token = None
+    return render_template('logout.html')
+
+
+@app.route('/error')
+def error():
+    return render_template('error.html')
+
+
+@app.errorhandler(404)
+def error_handler(error):
+    return redirect('/error')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route('/protected')
@@ -83,14 +119,6 @@ def protected():
         return f"Acceso permitido. Tu token de acceso es: {session['access_token']}<br><a href='/logout'>Cerrar sesión</a>"
     else:
         return redirect(url_for('authenticate'))
-
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    auth_client.access_token = None
-    auth_client.refresh_token = None
-    return 'Sesión cerrada. <a href="/">Iniciar sesión de nuevo</a>'
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 # FIN DEL FICHERO
