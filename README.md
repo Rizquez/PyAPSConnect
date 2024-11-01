@@ -23,6 +23,9 @@ __PyForgeConnect__ es una herramienta desarrollada en `Python` para facilitar la
 - __Flask__: Framework de desarrollo web ligero y flexible para la construcción de endpoints y gestión de autenticación.
 - __Render__: Plataforma de despliegue de aplicaciones en la nube.
 
+> [!NOTE]
+> Proyecto desarrollado con Python `3.11.2`.
+
 ## Estructura del proyecto
 La estructura del proyecto sigue un esquema modular para facilitar el crecimiento y la incorporación de nuevas funcionalidades:
 ```
@@ -65,11 +68,8 @@ CLIENT_SECRET = your_client_secret
 > [!TIP]
 > Dentro del archivo `.env` se recomienda añadir la siguiente variable `FLASK_ENV = development`, esta define el entorno de ejecucion en local para el programa.
 
-> [!NOTE]
-> Proyecto desarrollado con Python `3.11.2`.
-
 > [!IMPORTANT]
-> Para evitar problemas de autenticación, asegura tener configuradas correctamente tus credenciales en el archivo de variables de entorno
+> Para evitar problemas de autenticación, asegura tener configuradas correctamente tus credenciales en el archivo de variables de entorno.
 
 ## Recursos adicionales
 Para obtener más información sobre `Autodesk Forge`, consulta el sitio web oficial de [Autodesk Platform Services](https://aps.autodesk.com/developer/documentation)
