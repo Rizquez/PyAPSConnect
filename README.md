@@ -1,18 +1,30 @@
-# PyForgeConnect (En desarrollo)
+# PyForgeConnect
 
-## Descripcion
-PyForgeConnect es una herramienta desarrollada en `Python` para facilitar la conectividad e integración con `Autodesk Forge`, un conjunto de APIs en la nube que permiten a los desarrolladores crear aplicaciones para visualizar, manipular y gestionar datos de diseño en 3D. Este proyecto está en desarrollo y se enfoca en simplificar la interacción con `Autodesk Forge` a través de una interfaz `Python`.
+## Contexto
+__PyForgeConnect__ nace como una solución para desarrolladores que buscan integrar aplicaciones `Python` con `Autodesk Forge`, una plataforma de servicios en la nube que ofrece APIs para visualizar, manipular y gestionar datos de diseño en 3D. Debido a la falta de herramientas en `Python` que faciliten esta integración, este proyecto pretende llenar ese vacío, proporcionando una manera sencilla, robusta y escalable de conectar aplicaciones con `Forge`.
 
-## Caracteristicas
-- Conectividad rápida y segura con `Autodesk Forge`.
-- Funciones de manipulación y visualización de modelos `3D en la nube`.
-- Configuración sencilla y flexible para integrarse en otros proyectos `Python`.
-- Enfoque modular para facilitar la extensión y personalización.
+## Descripcion del proyecto
+__PyForgeConnect__ es una herramienta desarrollada en `Python` para facilitar la conectividad e integración con `Autodesk Forge`. Su objetivo es simplificar la interacción con esta plataforma a través de una interfaz `Python`, permitiendo que los desarrolladores puedan acceder a funciones clave de `Forge` como la visualización y manipulación de modelos 3D, la gestión de datos y más. Este proyecto se encuentra en desarrollo activo, y el `README` se actualizará a medida que se agreguen nuevas funcionalidades.
 
-## 🛠️ Tecnologias utilizadas
-- __Flask__: Framework de desarrollo web de alto nivel que promueve un desarrollo rápido y un diseño limpio y pragmático.
+> [!NOTE]
+> Este proyecto está en desarrollo activo, por lo que algunas funcionalidades aún están en construcción. El `README` se actualizará continuamente para indicar estas nuevas funcionalidades.
 
-## 📂 Estructura del proyecto
+## Funcionalidad
+- Autenticación rápida y segura con `Autodesk Forge`.
+<!-- Estas funcionalidades están planificadas:
+- Conexión simplificada a las APIs de `Forge`, permitiendo integrarse sin fricciones en otros proyectos de `Python`.
+- Configuración flexible para una integración modular y fácil de personalizar.
+- Funciones de manipulación y visualización de modelos 3D alojados en la nube.
+- Opciones avanzadas para gestionar y almacenar datos de diseño y simulación.
+- Soporte para tareas específicas en proyectos de ingeniería, arquitectura y manufactura.
+-->
+
+## Tecnologías utilizadas
+- __Flask__: Framework de desarrollo web ligero y flexible para la construcción de endpoints y gestión de autenticación.
+- __Render__: Plataforma de despliegue de aplicaciones en la nube.
+
+## Estructura del proyecto
+La estructura del proyecto sigue un esquema modular para facilitar el crecimiento y la incorporación de nuevas funcionalidades:
 ```
 ├── settings
 │   ├── _environment.py 
@@ -28,29 +40,50 @@ PyForgeConnect es una herramienta desarrollada en `Python` para facilitar la con
 └── requierments.txt
 ```
 
-## 🧾 Dependencias
-- Python 3.6 o superior.
-- Librerías especificadas en `requirements.txt`.
+## Instalación y dependencias
+Para comenzar a usar PyForgeConnect, sigue los siguientes pasos:
 
-Para instalar las dependencias, ejecuta:
+1. Clona el repositorio:
+```
+git clone https://github.com/tu-usuario/pyforgeconnect.git
+cd pyforgeconnect
+```
+
+2. Librerías especificadas en `requirements.txt`, para instalar las dependencias, ejecuta:
 ```
 pip install -r requirements.txt
 ```
-> [!NOTE]
-> Asegúrate de tener las credenciales de Autodesk Forge.
+
+3. Configura las credenciales de Autodesk Forge, asegúrate de tener las credenciales de Autodesk Forge y configúralas en el archivo `.env`
+```
+CLIENT_ID = your_client_id
+REDIRECT_URI = your_redirect_uri
+CLIENT_SECRET = your_client_secret
+```
 
 > [!TIP]
-> Configura tus credenciales en el archivo de variables de entorno.
+> Dentro del archivo `.env` se recomienda añadir la siguiente variable `FLASK_ENV = development`, esta define el entorno de ejecucion en local para el programa.
 
-## 📚 Recursos adicionales
-Para mas informacion visite el sitio web oficial de [Autodesk Platform Services](https://aps.autodesk.com/developer/documentation)
+> [!NOTE]
+> Proyecto desarrollado con Python `3.11.2`.
 
-## 📝 Contribuciones
-¡Las contribuciones son bienvenidas! Si deseas colaborar, por favor:
-- Haz un `fork` del proyecto.
-- Crea una rama con tu funcionalidad o corrección (git checkout -b feature/nueva-funcion).
-- Realiza un `pull request` con una descripción clara de tus cambios.
+> [!IMPORTANT]
+> Para evitar problemas de autenticación, asegura tener configuradas correctamente tus credenciales en el archivo de variables de entorno
 
-## 📄 Licencia
+## Recursos adicionales
+Para obtener más información sobre `Autodesk Forge`, consulta el sitio web oficial de [Autodesk Platform Services](https://aps.autodesk.com/developer/documentation)
+
+## Contribuciones
+¡Las contribuciones son bienvenidas! Si deseas colaborar, sigue estos pasos:
+- Realiza un `fork` del proyecto.
+- Crea una nueva rama con tu funcionalidad o corrección.
+```
+git checkout -b feature/nueva-funcion
+```
+- Realiza un `pull request` describiendo claramente tus cambios.
+
+> [!NOTE]
+> Por favor, asegúrate de seguir las normas de estilo y de añadir pruebas si aplican.
+
+## Licencia
 Este proyecto está licenciado bajo la licencia `GNU GENERAL PUBLIC LICENSE`. Consulta el archivo `LICENSE` para más detalles.
-
