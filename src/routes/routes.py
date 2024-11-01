@@ -28,7 +28,7 @@ auth_client = AuthClient(
 def home():
     return render_template('home.html', scopes=Scopes)
     
-
+ 
 @app.route('/authenticate', methods=['GET', 'POST'])
 def authenticate():
     if request.method == 'POST':
@@ -43,7 +43,7 @@ def authenticate():
 def callback():
     code = request.args.get('code')
     if not code:
-        return jsonify({'mensaje': 'No se proporcionó el código de autorización'}), 400
+        return jsonify({'mensaje': 'No se proporciono el codigo de autorizacion'}), 400
     
     try:
         tokens = auth_client.exchange_code_for_token(code)
@@ -67,7 +67,7 @@ def refresh():
         session['refresh_token'] = tokens.get('refresh_token')
         return redirect(url_for('protected'))
     except ValueError as ve:
-        return str(ve), 400
+        return jsonify({'mensaje': str(ve)}), 400
     except requests.HTTPError as httpe:
         return jsonify({'mensaje': f'Error al refrescar el token: {httpe.response.text}'}), 400
     
@@ -116,7 +116,7 @@ def error_handler(error):
 def protected():
     if 'access_token' in session:
         auth_client.access_token = session['access_token']
-        return f"Acceso permitido. Tu token de acceso es: {session['access_token']}<br><a href='/logout'>Cerrar sesión</a>"
+        return f"Acceso permitido. Tu token de acceso es: {session['access_token']}<br><a href='/logout'>Cerrar sesion</a>"
     else:
         return redirect(url_for('authenticate'))
 
