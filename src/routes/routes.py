@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------------------------------------------------------------------------------
 import os
 import requests
-from flask import Flask, request, redirect, session, url_for
+from flask import Flask, request, redirect, session, url_for, jsonify
 from dotenv import load_dotenv
 load_dotenv(override=False)
 # -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -47,15 +47,15 @@ def authenticate():
 def callback():
     code = request.args.get('code')
     if not code:
-        return 'Error: No se proporcionó el código de autorización.', 400
+        return jsonify({'mensaje': 'No se proporcionó el código de autorización'}), 400
     
     try:
         tokens = auth_client.exchange_code_for_token(code)
         session['access_token'] = tokens.get('access_token')
         session['refresh_token'] = tokens.get('refresh_token')
         return redirect(url_for('protected'))
-    except requests.HTTPError as e:
-        return f"Error al obtener el token: {e.response.text}", 400
+    except requests.HTTPError as httpe:
+        return jsonify({'mensaje': f'Error al obtener el token: {httpe.response.text}'}), 400
 
 
 @app.route('/api/auth/refresh')
@@ -72,8 +72,8 @@ def refresh():
         return redirect(url_for('protected'))
     except ValueError as ve:
         return str(ve), 400
-    except requests.HTTPError as e:
-        return f"Error al refrescar el token: {e.response.text}", 400
+    except requests.HTTPError as httpe:
+        return jsonify({'mensaje': f'Error al refrescar el token: {httpe.response.text}'}), 400
 
 
 @app.route('/protected')
